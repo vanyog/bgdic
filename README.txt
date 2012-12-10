@@ -1,0 +1,1 @@
+Full README file is written in Bulgarian. See README-bg.txt
