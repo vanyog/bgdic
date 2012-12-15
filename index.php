@@ -19,11 +19,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 $idir = dirname(dirname(__FILE__)).'/';
 
-include('f_dictionary.php');
+include('f_bgdic.php');
 
 $page_title = 'Речник на българския език';
 
-$page_content = dictionary();
+$page_content = bgdic();
 
 include($idir.'lib/build_page.php');
 
