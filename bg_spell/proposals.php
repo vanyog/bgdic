@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 error_reporting(E_ALL); ini_set('display_errors',1);
 
-$idir = dirname(dirname(dirname(__FILE__))).'/';
+$idir = dirname(dirname(dirname(dirname(__FILE__)))).'/';
 
 include("f_proposals.php");
 

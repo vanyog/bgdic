@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Добавяне на дума $_GET['for'] в таблица w_misspelled_bg_words
 
-$idir = dirname(dirname(dirname(__FILE__))).'/';
+$idir = dirname(dirname(dirname(dirname(__FILE__)))).'/';
 
 include($idir.'lib/f_db_select_1.php');
 
