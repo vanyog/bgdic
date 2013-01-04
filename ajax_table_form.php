@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Показване на html код за редактиране на форма на дума от таблица
 
-$idir = dirname(dirname(__FILE__)).'/';
+$idir = dirname(dirname(dirname(__FILE__))).'/';
 
 include($idir.'lib/f_db_select_1.php');
 

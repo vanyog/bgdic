@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Скрипт Правописен речник
 
-$idir = dirname(dirname(dirname(__FILE__))).'/';
+$idir = dirname(dirname(dirname(dirname(__FILE__)))).'/';
 
 include($idir.'lib/translation.php');
 include('f_check.php');

@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Отговор на ajax заявка за думи, които притежават зададено свойство
 
-$idir = dirname(dirname(__FILE__)).'/';
+$idir = dirname(dirname(dirname(__FILE__))).'/';
 
 include($idir.'lib/f_db_select_1.php');
 include($idir.'lib/f_db_select_m.php');

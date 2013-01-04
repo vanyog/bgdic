@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Скрипт, който отговаря на ajax заявка.
 // Връща html код за показване на падащ списък от стойности на свойството $_GET['n']
 
-$idir = dirname(dirname(__FILE__)).'/';
+$idir = dirname(dirname(dirname(__FILE__))).'/';
 
 include($idir."lib/f_db_field_values.php");
 include("f_combo_box.php");

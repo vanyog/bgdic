@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Показва списък на формите на дума от таблица номер $_GET['n']
 
-$idir = dirname(dirname(__FILE__)).'/';
+$idir = dirname(dirname(dirname(__FILE__))).'/';
 
 include($idir."lib/f_db_select_m.php");
 include($idir."lib/f_db_select_1.php");

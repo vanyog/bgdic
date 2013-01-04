@@ -23,7 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // и се връща празен низ, иначе се връща изтритата дума.
 
 
-$idir = dirname(dirname(__FILE__)).'/';
+$idir = dirname(dirname(dirname(__FILE__))).'/';
+
 include($idir."lib/f_db_select_m.php");
 include($idir."lib/f_utf8_to_cp1251.php");
 

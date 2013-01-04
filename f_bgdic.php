@@ -23,19 +23,21 @@ global $dpth;
 
 $dpth = dirname(__FILE__).'/';
 
-include_once($dpth.'../conf_paths.php');
-include_once($dpth.'../lib/f_db_table_field.php');
-include_once($dpth.'../lib/f_db_select_m.php');
+include_once($dpth.'../../conf_paths.php');
+include_once($dpth.'../../lib/f_db_table_field.php');
+include_once($dpth.'../../lib/f_db_select_m.php');
+include_once($dpth.'../../lib/f_stored_value.php');
 include_once($dpth.'f_to_javascript.php');
 
 function bgdic(){
 
 global $pth, $dpth, $database, $user, $password, $db_link, $tn_prefix, $body_adds, $page_header, $idir;
 
-$rpth = $pth.basename($dpth);
+$rpth = $pth.'mod/'.basename($dpth);
 
 $cols = 5;                                 // Брой на колоните на страницата
 $wc = 1*db_table_field('COUNT(*)', 'w_words', '1'); // Брой на всички думи в базата данни
+if (!$wc) return "Няма думи в базата данни! ";
 $fs = 1*db_table_field('COUNT(*)', 'w_word_forms', '1'); // Брой на всички форми на думи
 
 $wf = ''; // Форма на думата, която се търси
@@ -96,8 +98,8 @@ w.focus();
 --></script>';
 
 // Проверка дали броя е променен
-$fc = file($dpth.'last_word_count.txt');
-$changed = ($fc[0]!=$wc);
+$fc = stored_value('bgdic_last_word_count');
+$changed = ($fc!=$wc);
 if ($changed){ // Ако броят на думите е променен се генерира нов файл dictionary.html
  
 $sc = ceil(sqrt($wc));  // През колко думи ще се вземат. Не е цяло число.
@@ -159,9 +161,7 @@ $f = fopen($dpth.'dictionary.html','w');
 fwrite($f,$rz);
 fclose($f);
 
-$f = fopen($dpth.'last_word_count.txt','w');
-fwrite($f,$wc);
-fclose($f);
+store_value('bgdic_last_word_count',$wc);
 
 } // Ако броят на думите не е променен функцията връща съдържанието на файл dictionary.html
 else { $rz = file_get_contents($dpth.'dictionary.html'); }

@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Отговаря на ajax заявка за показване на списък от думи,
 // започващ от дума номер $_GET['n']
 
-$idir = dirname(dirname(__FILE__)).'/';
+$idir = dirname(dirname(dirname(__FILE__))).'/';
 
 include($idir.'lib/f_db_table_field.php');
 include($idir.'lib/f_db_select_m.php');
