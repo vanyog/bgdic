@@ -17,11 +17,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$idir = dirname(dirname(__FILE__)).'/';
+$idir = dirname(dirname(dirname(__FILE__))).'/';
 
 include($idir."lib/f_db_select_1.php");
 
-$db_link=get_db_link();
+//$db_link=get_db_link();
 
 if ( isset($_POST['autocorrect']) ) $correct = $_POST['autocorrect'];
 else $correct = $_POST['correct'];

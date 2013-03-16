@@ -19,11 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Страница за редактиране на думи
 
-$idir = dirname(dirname(__FILE__)).'/';
+$idir = dirname(dirname(dirname(__FILE__))).'/';
 
 include($idir."conf_paths.php");
 include("f_insert_forms.php");
-include($idir."lib/f_db_select_1.php");
 
 process_data(); // Обработка на изпратените с POST данни
 
@@ -31,7 +30,7 @@ process_data(); // Обработка на изпратените с POST данни
 $nw = db_select_1('*','w_misspelled_bg_words','`status`=1 ORDER BY `date_0` DESC');
 if ($nw) $nw = $nw['word'];
 
-$rpth = $pth.basename(dirname(__FILE__)).'/';
+$rpth = $pth.'mod/bgdic/';
 
 $tb = ''; // Номер на таблица за добавяне на дума
 
@@ -72,7 +71,7 @@ ajaxO.open("GET","'.$rpth.'ajax_word_delete.php?w="+s.value+"&t="+t.value+"&z="+
 ajaxO.send(null);
 var r = ajaxO.responseText;
 if (r) alert("Думата "+r+" беше изтрита.");
-else alert("Не беше изтрита дума, защото\nдумата не съществува\nили трябва да уточните думата от коя теблица да се изтрие.");
+else alert("Не беше изтрита дума, защото\nдумата не съществува\nили трябва да уточните думата от коя таблица да се изтрие.");
 }
 
 // Изпълнява се при щракване на бутона "Проба"

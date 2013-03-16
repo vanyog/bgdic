@@ -21,10 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // на думите, които вече са вкарани в речника, задава `status` = 3 (вече доавени)
 // и показва думите, които още не са добавени.
 
-$idir = dirname(dirname(__FILE__)).'/';
+$idir = dirname(dirname(dirname(__FILE__))).'/';
 
+include($idir.'conf_paths.php');
 include($idir.'lib/f_db_select_m.php');
-include($idir.'lib/f_db_select_1.php');
 include('bg_spell/f_check.php');
 
 // Четене на всички думи без корекция

@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Скриптът отговаря на ajax заявка, в която с $_GET['w'] e изпратена дума
 // и в отговор връща номера/та на таблицата/ите, по която/ите се образуват формите на думата
 
+error_reporting(E_ALL); ini_set('display_errors',1);
+
 $idir = dirname(dirname(dirname(__FILE__))).'/';
 
 include($idir."lib/f_db_select_m.php");
