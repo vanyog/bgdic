@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 error_reporting(E_ALL); ini_set('display_errors',1);
 
-$idir = dirname(dirname(__FILE__)).'/';
+$idir = dirname(dirname(dirname(__FILE__))).'/';
 
 include($idir.'lib/f_db_field_values.php');
 include($idir.'lib/f_db_table_field.php');
@@ -60,7 +60,7 @@ echo '<script type="text/javascript"><!--
 function goFind(){
 var f = document.forms.word_tables;
 var n = f.fword;
-n.value = f.word.value; alert(n.value);
+n.value = f.word.value; //alert(n.value);
 f.submit();
 }
 

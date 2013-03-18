@@ -39,7 +39,7 @@ $n = '';
 // Ако не е изпратен текст се показва формата за въвеждане на текст
 if (!$rz) $rz = $txtf->html(); 
 else {
-  $rz = "<p>".translate('bgdic_web_result')."</p><div>$rz</div>";
+  $rz = "<p>".translate('bgdic_web_result')."</p><div>".nl2br($rz)."</div>";
   $n = '<p><a href="'.$_SERVER['REQUEST_URI'].'">'.translate('bgdic_web_again').'</a></p>';
 }
 
@@ -54,11 +54,11 @@ return '<div id="bgspellchecker">
 function check_text(){
 // Ако не е изпратен текст се връща празен низ
 if (!isset($_POST['texttch'])) return '';
-// Намиране и проверяване на всяка дума, написана на кирилица
+// Намиране и проверявана не всяка дума, написана на кирилица
 $search = '/[А-Яа-я]+/is';
 $GLOBALS['wrd'] = array();  // Асоциативен масив на срещащите се в текста думи
 // Индекси на този масив са думите, а стойностите показват дали думите са правилно написани
-$m = preg_replace_callback($search, 'check_word', substr($_POST['texttch'],0,5000));
+$m = preg_replace_callback($search, 'check_word', $_POST['texttch']);
 return $m;
 }
 

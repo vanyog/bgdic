@@ -29,7 +29,7 @@ $c0 = db_table_field("COUNT(*)","w_misspelled_bg_words","status=1 OR status=3");
 $ct = db_table_field("COUNT(*)","w_misspelled_bg_words","1");
 $cb = db_table_field("COUNT(*)","w_misspelled_bg_words","status>0 OR correct>''");
 $r0 = db_select_m("word,status","w_misspelled_bg_words",
-      "(`status`=1 OR `status`=3) AND (`count`>`no`) ORDER BY date_0 DESC LIMIT 0,100");
+      "(`status`=1 OR `status`=3) AND (`count`>`no`) ORDER BY `status`, date_0 DESC LIMIT 0,100");
 $c = count($r0);
 $cols = 4;
 $c1=$c/$cols; $f=true;

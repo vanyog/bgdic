@@ -115,7 +115,7 @@ $page_content = '<p>Съществуваща дума: <input type="text" id="ex_word" onkeypres
 <input type="button" value="Копиране" onclick="onCopy();"> 
 </p>
 
-<div id="test_result"></div>
+<div id="test_result" style="width:600px"></div>
 
 <div style="position:absolute; top:0; left:650px;">
 <p><strong>Намиране</strong>. Попълва се "Съществуваща дума" и се щраква бутона. В "Таблица" се показват таблиците на всички омоними.</p>

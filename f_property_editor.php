@@ -32,7 +32,7 @@ include_once("f_combo_box_i.php");
 include_once('f_list_box.php');
 include_once('f_form_string.php');
 
-$rpth = $pth.basename(dirname(__FILE__)).'/';
+$rpth = $pth.'mod/bgdic/';
 
 $rz = ''; // Резултатът, който връща функцията
 
