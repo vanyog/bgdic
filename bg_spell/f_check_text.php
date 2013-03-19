@@ -23,7 +23,7 @@ include($idir.'lib/o_form.php');
 include(dirname(dirname(__FILE__)).'/bg_spell/f_check.php');
 
 function spell_check_text(){
-global $page_header;
+global $page_header, $tn_prefix, $db_link;
 
 // Форма за задаване текста за проверяване
 $txtf = new HTMLForm('txtch_form');
@@ -39,6 +39,12 @@ $n = '';
 // Ако не е изпратен текст се показва формата за въвеждане на текст
 if (!$rz) $rz = $txtf->html(); 
 else {
+  // Записване на проверения текст в таблица $tn_prefix.'w_checked_texts"
+  if (!show_adm_links()){
+    $q = "INSERT INTO `$tn_prefix"."w_checked_texts` SET `datetime_0`=NOW(), `IP`='".$_SERVER['REMOTE_ADDR'].
+       "', `text`='".addslashes($rz)."';";
+//    mysql_query($q,$db_link);
+  }
   $rz = "<p>".translate('bgdic_web_result')."</p><div>".nl2br($rz)."</div>";
   $n = '<p><a href="'.$_SERVER['REQUEST_URI'].'">'.translate('bgdic_web_again').'</a></p>';
 }
