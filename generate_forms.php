@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Скриптът генерира основните форми на думите и ги записва в таблица w_table_forms
 
-$idir = dirname(dirname(__FILE__)).'/';
+$idir = dirname(dirname(dirname(__FILE__))).'/';
 
 include($idir.'lib/f_db_select_m.php');
 include($idir.'lib/f_db_table_field.php');

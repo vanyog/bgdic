@@ -177,7 +177,7 @@ global $tn_prefix, $db_link;
 // Четене на формите на думата
 $fs = db_select_m('word_form','w_word_forms',"`word_id`=$i");
 // Съставяне на SQL заявка
-$q = "UPDATE `$tn_prfix"."w_misspelled_bg_words` SET `status`=3 WHERE ";
+$q = "UPDATE `$tn_prefix"."w_misspelled_bg_words` SET `status`=3 WHERE ";
 foreach($fs as $f) $q .= "`word`='".$f['word_form']."' OR ";
 $q = substr($q,0,strlen($q)-4).';';
 // Изпълнение на SQL заявката

@@ -29,7 +29,7 @@ function check_word(){
 $rz = '';
 if (isset($_POST['bg_word'])) $rz = check_1word();
 return '<div style="font-family:arial,sans-serif;">'.$rz.'<p>'.translate('bg_spell_1').'</p>
-<form action="'.$_SERVER['PHP_SELF'].'" method="post">
+<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 <div>
 <input type="text" name="bg_word">
 <input type="submit" value="'.translate('bg_spell_b').'">

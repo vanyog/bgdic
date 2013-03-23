@@ -18,22 +18,24 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-include_once($idir.'lib/f_db_select_1.php');
+include_once($idir.'lib/f_db_select_m.php');
 
 //--------дефиниции на функции и класове------
 
 // Връща true ако думата $w присъства в базата данни
 function isCorrect($w){
-$c = db_select_1('*','w_word_forms',"`word_form`='$w'");
-if ($c){
+$c = db_select_m('*','w_word_forms',"`word_form`='$w'");
+if (count($c)){
  include_once("hlanguage.php");
  $hlang = new HLanguage('bg');
- $w1 = $c['word_form'];
- if ($w==$w1) return true;
- if ( in_array($w1[0], $hlang->lc_l) ){ // ако думата в базата не започва с главна буква
-  $w1[0]=$hlang->uc_l[$w1[0]];         // първата и буква се прави главна
+ foreach($c as $c1){
+   $w1 = $c1['word_form'];
+   if ($w==$w1) return true;
+   if ( in_array($w1[0], $hlang->lc_l) ){ // ако думата в базата не започва с главна буква
+     $w1[0]=$hlang->uc_l[$w1[0]];         // първата и буква се прави главна
+   }
+   if ($w==$w1) return true;
  }
- return ($w==$w1);
 }
 else return false;
 }

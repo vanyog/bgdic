@@ -64,7 +64,10 @@ if (!isset($_POST['texttch'])) return '';
 $search = '/[А-Яа-я]+/is';
 $GLOBALS['wrd'] = array();  // Асоциативен масив на срещащите се в текста думи
 // Индекси на този масив са думите, а стойностите показват дали думите са правилно написани
-$m = preg_replace_callback($search, 'check_word', $_POST['texttch']);
+$m = substr($_POST['texttch'],0,5000);
+$m = stripslashes($m);
+$m = str_replace('и&#774;','й',$m);
+$m = preg_replace_callback($search, 'check_word', $m);
 return $m;
 }
 
