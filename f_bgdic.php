@@ -99,7 +99,7 @@ w.focus();
 
 // Проверка дали броя е променен
 $fc = stored_value('bgdic_last_word_count');
-$changed = ($fc!=$wc);
+$changed = (($fc!=$wc) || !file_exists($dpth.'dictionary.html'));
 if ($changed){ // Ако броят на думите е променен се генерира нов файл dictionary.html
  
 $sc = ceil(sqrt($wc));  // През колко думи ще се вземат. Не е цяло число.
