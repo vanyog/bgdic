@@ -26,7 +26,10 @@ $idir = dirname(dirname(dirname(__FILE__))).'/';
 
 include($idir.'conf_paths.php');
 include($idir.'lib/f_db_select_m.php');
+include($mod_apth.'user/f_user.php');
 include("bg_spell/f_check.php");
+
+user();
 
 $wd = db_select_m('*','w_misspelled_bg_words',"`correct`>'' AND `status`=0");
 
@@ -51,6 +54,6 @@ foreach($wd as $w){
   }
 }
 
-echo "===";
+echo '===<br><a href="editing.php">Администриране</a>';
 
 ?>

@@ -20,6 +20,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 $idir = dirname(dirname(dirname(__FILE__))).'/';
 
 include('f_property_editor.php');
+include($idir.'conf_paths.php');
+include($mod_apth.'user/f_user.php');
+
+user();
 
 $page_content = '<p><a href="'.dirname(dirname($_SERVER['PHP_SELF'])).'">Home</a></p>
 '.property_editor();

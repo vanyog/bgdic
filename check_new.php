@@ -25,7 +25,10 @@ $idir = dirname(dirname(dirname(__FILE__))).'/';
 
 include($idir.'conf_paths.php');
 include($idir.'lib/f_db_select_m.php');
+include($mod_apth.'user/f_user.php');
 include('bg_spell/f_check.php');
+
+user();
 
 // Четене на всички думи без корекция
 //$da = db_select_m('*', 'w_misspelled_bg_words', "`correct`='' ORDER BY `date_0` DESC");
@@ -45,6 +48,6 @@ foreach($da as $w){ // За всяка одобрена дума
   else echo '<a href="'.$adm_pth.'edit_record.php?t=w_misspelled_bg_words&r='.$w['ID'].'">'.$w['word']."</a><br>\n";
 }
 
-echo "===";
+echo '===<br><a href="editing.php">Администриране</a>';
 
 ?>

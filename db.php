@@ -20,8 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 $idir = dirname(dirname(dirname(__FILE__))).'/';
 
 include($idir."lib/f_db_table_field.php");
-include($idir."lib/f_db_select_1.php");
+include($idir."conf_paths.php");
 include("bg_spell/f_proposals.php");
+include($mod_apth.'user/f_user.php');
+
+user();
 
 $c = db_table_field("COUNT(*)","w_misspelled_bg_words","correct='' AND NOT status");
 $w = db_select_1("*","w_misspelled_bg_words","correct='' AND NOT `status` ORDER BY `count` DESC");
@@ -56,7 +59,9 @@ echo '</p>
 <input type="submit" value="Следваща дума">
 </form>
 
-<p><a href="http://physics-bg.org/z/index.php?pid=2" target="_blank">Речник</a> || <a href="http://vanyog.com/_new/index.php?pid=11" target="_blank">Нови думи</a></p>
+<p><a href="http://physics-bg.org/z/index.php?pid=2" target="_blank">Речник</a> || 
+<a href="http://vanyog.com/_new/index.php?pid=11" target="_blank">Нови думи</a> ||
+<a href="editing.php">Администриране</a></p>
 </center></td></tr></table>';
 
 ?>

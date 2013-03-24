@@ -17,21 +17,27 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// Този скрипт вече не е необходим.
+// Главна страница за администриране, която показва линкове към други страници
 
-// Проверяване дали думите от файл proba1.txt са налични в речника
-// При откриване на липсваща дума, тя се изписва и скриптът спира да проверява повече
+$idir = dirname(dirname(dirname(__FILE__))).'/';
 
-include('../f_db_select_m.php');
+include($idir.'conf_paths.php');
+include($mod_apth.'user/f_user.php');
 
-$ws = file('proba1.txt');
+user();
 
-$c = 0;
-foreach($ws as $i => $w){
- $wd = db_select_m('*','w_word_forms',"`word_form`='".trim($w)."'");
- if (!count($wd)){ echo "$w<br>"; $c++; }
-}
+$page_content = '<h1>Администриране на речника</h1>
+<p>
+<a href="db.php">Преглеждане на новопредложените думи</a><br>
+<a href="check_new.php">Проверяване на приетите думи</a><br>
+<a href="check_corrections.php">Проверяване на поправките</a><br>
+</p>
 
-echo "All is OK";
+<p>
+<a href="edit_words.php">Добавяне, изтриване, променяне на таблиците на думи</a><br>
+</p>
+';
+
+include($idir.'lib/build_page.php');
 
 ?>

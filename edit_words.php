@@ -22,7 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 $idir = dirname(dirname(dirname(__FILE__))).'/';
 
 include($idir."conf_paths.php");
+include($mod_apth."user/f_user.php");
 include("f_insert_forms.php");
+
+user();
 
 process_data(); // Обработка на изпратените с POST данни
 
