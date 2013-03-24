@@ -28,6 +28,9 @@ user();
 
 $page_content = '<h1>Администриране на речника</h1>
 <p>
+<a href="'.$pth.'index.php?pid=2">Речник</a>
+</p>
+<p>
 <a href="db.php">Преглеждане на новопредложените думи</a><br>
 <a href="check_new.php">Проверяване на приетите думи</a><br>
 <a href="check_corrections.php">Проверяване на поправките</a><br>

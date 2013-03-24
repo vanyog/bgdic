@@ -118,6 +118,8 @@ $page_content = '<p>Съществуваща дума: <input type="text" id="ex_word" onkeypres
 <input type="button" value="Копиране" onclick="onCopy();"> 
 </p>
 
+<p><a href="editing.php">Администриране</a></p>
+
 <div id="test_result" style="width:600px"></div>
 
 <div style="position:absolute; top:0; left:650px;">
