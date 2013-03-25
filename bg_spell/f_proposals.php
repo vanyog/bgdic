@@ -18,6 +18,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+include_once($idir.'lib/f_db_table_field.php');
 include("f_check.php");
 
 function proposals($w){
@@ -27,7 +28,6 @@ $w = addslashes($w);
 $s=array();
 
 $w1 = maybe_up($w); if ($w1) $s[]=$w1;
-
 
 $w1 = maybe_changed($w, 'у', 'о'); if ($w1) $s[]=$w1; //188 авгост
 $w1 = maybe_changed($w, 'о', 'у'); if ($w1) $s[]=$w1; //171 автокузметик
@@ -170,6 +170,9 @@ $w1 = maybe_inserted($w, 'ф'); if ($w1) $s[]=$w1; //2 евфтаназия
 
 $w1 = maybe_dropped($w, '-'); if ($w1) $s[]=$w1;
 else { $w1 = maybe_2($w);  if ($w1) $s[]=$w1; }
+
+$w1 = db_table_field('correct','w_misspelled_bg_words',"`word`='$w'");
+if ($w1 && !in_array($w1,$s)) $s[]=$w1;
 
 return $s;
 

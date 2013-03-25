@@ -50,20 +50,20 @@ if ($w){
           ' <a href="http://physics-bg.org/z/?pid=2&wf='.urlencode($w).'" target="_blanc">'.
           translate('bg_spell_more').'</a></p>';
   else {
-    $p = dirname($_SERVER['PHP_SELF']);
+    $p = current_pth(__FILE__);
     $rz .= translate('bg_spell_nok').'<br>
 <script type="text/javascript">
 function getSugestions(){
   if (window.XMLHttpRequest) aj=new XMLHttpRequest();
   else aj=new ActiveXObject("Microsoft.XMLHTTP");
-  aj.open("GET","'.$p.'/proposals.php?for='.urlencode($w).'"+"&z="+Math.random(),false);
+  aj.open("GET","'.$p.'proposals.php?for='.urlencode($w).'"+"&z="+Math.random(),false);
   aj.send(null);
   document.getElementById("sugestions").innerHTML = aj.responseText;
 }
 function addSugestions(){
   if (window.XMLHttpRequest) aj=new XMLHttpRequest();
   else aj=new ActiveXObject("Microsoft.XMLHTTP");
-  aj.open("GET","'.$p.'/addsugestion.php?for='.urlencode($w).'"+"&z="+Math.random(),false);
+  aj.open("GET","'.$p.'addsugestion.php?for='.urlencode($w).'"+"&z="+Math.random(),false);
   aj.send(null);
   document.getElementById("sugestions").innerHTML = aj.responseText;
 }

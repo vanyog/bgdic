@@ -27,7 +27,7 @@ include($mod_apth.'user/f_user.php');
 user();
 
 $c = db_table_field("COUNT(*)","w_misspelled_bg_words","correct='' AND NOT status");
-$w = db_select_1("*","w_misspelled_bg_words","correct='' AND NOT `status` ORDER BY `count` DESC");
+$w = db_select_1("*","w_misspelled_bg_words","correct='' AND NOT `status` ORDER BY `count` DESC, `date_0`");
 $s = proposals($w['word']);
 mysql_close($db_link);
 

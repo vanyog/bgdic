@@ -27,12 +27,15 @@ $id = 1*$_GET['i'];
 
 $w = db_select_1('*', 'w_words', "`ID`=$id");
 $ti = db_select_1('*', 'w_table_props', "`table`=".$w['table'] );
+$in = db_select_1('*', 'w_dictionary', "`word`='".$w['word']."'");
 
 header("Content-Type: text/html; charset=windows-1251");
 
 echo '<strong>'.$w['word'].'</strong> - '.form_string($ti['form_id']).
 ' <em>'.$w['note'].'</em> <a href="http://google.bg/search?q='.urlencode(iconv('cp1251','UTF-8',$w['word'])).'" target="_blank">google</a><br>
 Таблица: '.$w['table']."\n";
+
+if ($in) echo '<br>'.$in['interpretation']."\n";
 
 echo word_forms($w['word'],$w['table']);
 
