@@ -17,10 +17,22 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+include_once($idir."lib/f_db_select_1.php");
+include_once($idir."lib/f_db_select_m.php");
+
+// Вмъкване на дума $w с таблица $t
+
+function insert_word($w,$t){
+global $tn_prefix, $db_link;
+$q = "INSERT INTO `$tn_prefix"."w_words` SET `word`='$w', `table`=$t;";
+mysql_query($q,$db_link);
+$i = mysql_insert_id($db_link);
+$w = db_select_1('*', 'w_words', "`ID`=$i");
+insert_forms($w);
+}
+
 // Вмъкване формите на дума в таблица w_word_forms
 // $w е асоциативен масив на записа на думата в таблица w_words
-
-include_once($idir."lib/f_db_select_m.php");
 
 function insert_forms($w){
 

@@ -37,7 +37,6 @@ return '<p>Не е програмирана функция за обработка на такъв набор от данни.</p>';
 // Обработване на данни за свойство на дума
 function process_prop_data(){
 global $tn_prefix, $db_link;
-include_once("f_db_select_1.php");
 $n = addslashes($_POST['new_name']); // Ново име на свойство
 $v = addslashes($_POST['new_value']);// Нова стойност на свойство
 $a = addslashes($_POST['abrev']);    // Съкращение
@@ -65,8 +64,6 @@ case 'update':
 function process_form_data(){
 //print_r($_POST); die;
 global $tn_prefix, $db_link;
-include_once("f_db_select_1.php");
-include_once("f_db_table_field.php");
 $pda = explode(';',$_POST['sended_form_props']); // Масив с изпратените двойки "име: стойност"
 $fnu = 1*$_POST['form_ids'];                     // Номер на формата
 $fda = array();                                  // Масив от свойства на формата

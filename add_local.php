@@ -1,7 +1,7 @@
 <?php
 /*
 Free Bulgarian Dictionary Database
-Copyright (C) 2012  Vanyo Georgiev <info@vanyog.com>
+Copyright (C) 2013  Vanyo Georgiev <info@vanyog.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,24 +17,34 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// Ако са правени промени в някоя таблица, този скрипт генерира отново формите на думите от тази таблица
-// Номерът на таблицата трябва да е изпратен в $_GET['t'].
-
-if (isset($_GET['t'])) $t = 1*$_GET['t']; // Номер на таблицата
-else die('Не е изпратен номер на таблица с $_GET["t"]');
+// Добавяне на думи от файл w_words_local.csv на програмата grammar-bg
 
 $idir = dirname(dirname(dirname(__FILE__))).'/';
 
-include($idir.'lib/f_db_select_m.php');
+include($idir.'lib/o_form.php');
 include('f_insert_forms.php');
 
-$wd = db_select_m('*','w_words',"`table`=$t");
+if (isset($_POST['wdata'])) process_data();
 
-foreach($wd as $w){
-  $q = "DELETE FROM `$tx_prefix"."w_word_forms` WHERE `word_id`=".$w['ID'].";";
-  mysql_query($q,$db_link);
-  insert_forms($w);
-  echo $w['word']."<br>";
+$tef = new HTMLForm('te_form');
+$tef->add_input( new FormTextArea('','wdata',50,30) );
+$tef->add_input( new FormInput('','','submit') );
+
+$page_content = $tef->html();
+
+include($idir.'lib/build_page.php');
+
+function process_data(){
+$a = explode("\n",stripslashes($_POST['wdata']));
+foreach($a as $l){
+  $d = explode(",",trim($l));
+  if (count($d)==5){
+    $w = substr($d[1],1,strlen($d[1])-2);
+    $t = substr($d[2],1,strlen($d[2])-2);
+    insert_word($w,$t);
+    echo "$w $t<br>";
+  }
+}
 }
 
 ?>
