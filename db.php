@@ -17,7 +17,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// Скрипт за преглеждане и приемане/отхвърляне на предложените нови думи
+
 $idir = dirname(dirname(dirname(__FILE__))).'/';
+$ddir = $idir;
 
 include($idir."lib/f_db_table_field.php");
 include($idir."conf_paths.php");
@@ -29,7 +32,7 @@ user();
 $c = db_table_field("COUNT(*)","w_misspelled_bg_words","correct='' AND NOT status");
 $w = db_select_1("*","w_misspelled_bg_words","correct='' AND NOT `status` ORDER BY `count` DESC, `date_0`");
 $s = proposals($w['word']);
-mysql_close($db_link);
+mysqli_close($db_link);
 
 header("Content-Type: text/html; charset=windows-1251");
 

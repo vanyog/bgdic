@@ -25,7 +25,7 @@ include_once($idir."lib/f_db_select_m.php");
 function insert_word($w,$t){
 global $tn_prefix, $db_link;
 $q = "INSERT INTO `$tn_prefix"."w_words` SET `word`='$w', `table`=$t;";
-mysql_query($q,$db_link);
+mysqli_query($db_link, $q);
 $i = mysql_insert_id($db_link);
 $w = db_select_1('*', 'w_words', "`ID`=$i");
 insert_forms($w);
@@ -55,7 +55,7 @@ foreach($fs as $f){
 }
 $q = substr($q,0,strlen($q)-2).';';
 
-mysql_query($q,$db_link);
+mysqli_query($db_link, $q);
 
 }
 

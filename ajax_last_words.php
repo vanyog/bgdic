@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Отговаря на ajax заявка за показване на последните $_GET['n'] въведени думи
 
 $idir = dirname(dirname(dirname(__FILE__))).'/';
+$ddir = $idir;
 
 include($idir.'lib/f_db_table_field.php');
 include($idir.'lib/f_db_select_m.php');

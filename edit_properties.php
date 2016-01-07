@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 $idir = dirname(dirname(dirname(__FILE__))).'/';
+$ddir = $idir;
 
 include('f_property_editor.php');
 include($idir.'conf_paths.php');

@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Скрипт Правописен речник
 
 $idir = dirname(dirname(dirname(dirname(__FILE__)))).'/';
+$ddir = $idir;
 
 include($idir.'lib/translation.php');
 include('f_check.php');

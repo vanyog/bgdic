@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Трябва да получи в $_GET['n'] стойност на поле `form` от таблица `w_forms`.
 
 $idir = dirname(dirname(dirname(__FILE__))).'/';
+$ddir = $idir;
 
 include($idir."lib/f_db_select_m.php");
 include($idir."lib/f_db_select_1.php");

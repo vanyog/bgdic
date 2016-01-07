@@ -18,15 +18,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 // Скриптът чете всички думи със `status`='1' (одобрени за добавяне) от таблица w_misspelled_bg_words
-// на думите, които вече са вкарани в речника, задава `status` = 3 (вече доавени)
+// на думите, които вече са вкарани в речника, задава `status` = 3 (вече добавени)
 // и показва думите, които още не са добавени.
 
 $idir = dirname(dirname(dirname(__FILE__))).'/';
+$ddir = $idir;
 
-include($idir.'conf_paths.php');
-include($idir.'lib/f_db_select_m.php');
-include($mod_apth.'user/f_user.php');
-include('bg_spell/f_check.php');
+include_once($idir.'conf_paths.php');
+include_once($idir.'lib/f_db_select_m.php');
+include_once($mod_apth.'user/f_user.php');
+include_once('bg_spell/f_check.php');
 
 user();
 

@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Скриптът отговаря на Ajax заявка за намиране на дума, изпратена с $_GET['i']
 
 $idir = dirname(dirname(dirname(__FILE__))).'/';
+$ddir = $idir;
 
 include($idir.'lib/f_db_select_1.php');
 include($idir.'lib/f_db_select_m.php');

@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Главна страница за администриране, която показва линкове към други страници
 
 $idir = dirname(dirname(dirname(__FILE__))).'/';
+$ddir = $idir;
 
 include($idir.'conf_paths.php');
 include($mod_apth.'user/f_user.php');

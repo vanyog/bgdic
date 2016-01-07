@@ -18,7 +18,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// Показване на последните 100 одобрени за добавяне или добавени думи
+
 $idir = dirname(dirname(dirname(__FILE__))).'/';
+$ddir = $idir;
 
 include_once($idir.'lib/f_db_table_field.php');
 include_once($idir.'lib/f_db_select_m.php');

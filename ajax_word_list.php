@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // започващ от дума номер $_GET['n']
 
 $idir = dirname(dirname(dirname(__FILE__))).'/';
+$ddir = $idir;
 
 include($idir.'lib/f_db_table_field.php');
 include($idir.'lib/f_db_select_m.php');
@@ -28,6 +29,7 @@ include($idir.'lib/f_db_select_m.php');
 $n = 1*$_GET['i']; // Номер на думата, от която започва списъка
 
 $c = db_table_field('COUNT(*)', 'w_words', "1"); // Брой на всички думи в базата данни
+
 $p = ceil(sqrt($c)); // Брой на думите, които ще се покажат
 
 //if ($c-$n<2*$p) $p = $c-$n+1;

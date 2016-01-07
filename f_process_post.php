@@ -47,7 +47,7 @@ case 'insert':
   $ch = db_select_1('*','w_properties',"`name`='$n' AND `value`='$v'");
   if ($ch) return '<p>Вече има запис с такива стойности</p>';
   $q = "INSERT INTO `$tn_prefix"."w_properties` SET `name`='$n', `value`='$v', `abrev`='$a';";
-  mysql_query($q,$db_link);
+  mysqli_query($db_link, $q);
   break;
 // Ако е натиснат бутон "Променяне"
 case 'update':
@@ -55,7 +55,7 @@ case 'update':
   $ov = addslashes(urldecode($_POST['prop_value']));
   $ch = db_select_1('*','w_properties',"`name`='$on' AND `value`='$ov'");
   $q = "UPDATE `$tn_prefix"."w_properties` SET `name`='$n', `value`='$v', `abrev`='$a' WHERE `ID`=".$ch['ID'].";";
-  mysql_query($q,$db_link);
+  mysqli_query($db_link, $q);
   break;
 }
 }
@@ -93,7 +93,7 @@ foreach($pda as $p){
  case 'insert':
    $p = db_table_field('MAX(`place`)', 'w_forms', '1') + 10;
    $q = "INSERT INTO `$tn_prefix"."w_forms` SET `place`=$p, `form`=$fnu, `prop_id`=".$pid['ID'].";";
-   mysql_query($q,$db_link); // echo "$q<br>";
+   mysqli_query($db_link, $q); // echo "$q<br>";
    break;
  // Ако се променя форма
  case 'update':
@@ -109,14 +109,14 @@ foreach($pda as $p){
      $k = array_search($pid['ID'],$fda);
      unset($fda[$k]);
    }
-   mysql_query($q,$db_link); // echo "$q<br>";
+   mysqli_query($db_link, $q); // echo "$q<br>";
    break;
  }
 } // Край на цикъла за обработка на всяка изпратена двойка "име: стойност"
 // Изтриване на стари свойства на формата
 foreach($fda as $fd){
   $q = "DELETE FROM `$tn_prefix"."w_forms` WHERE `form`=$fnu AND `prop_id`=$fd;";
-  mysql_query($q,$db_link); 
+  mysqli_query($db_link, $q);
 //  echo "$q<br>";
 }
 //die;
@@ -136,12 +136,12 @@ case 'insert': // Вмъкване на нова форма в таблицата
   $f = 1*$_POST['form_id'];
   $p = db_table_field('MAX(`place`)', 'w_tables', '1')+10;
   $q = "INSERT INTO `$tn_prefix"."w_tables` SET `place`=$p, `table`=$t, `old`=$o, `new`='$n', `form_id`=$f;";
-  mysql_query($q,$db_link);
+  mysqli_query($db_link, $q);
   break;
 case 'save': // Вмъкване на запис за таблицата в w_table_props
   $f = 1*$_POST['table_form_id'];
   $q = "INSERT INTO `$tn_prefix"."w_table_props` SET `table`=$t, `form_id`=$f;";
-  mysql_query($q,$db_link);
+  mysqli_query($db_link, $q);
   break;
 case 'new': // Създаване на нова таблица
   $t = db_table_field('MAX(`table`)', 'w_tables', '1')+1;
@@ -150,11 +150,11 @@ case 'new': // Създаване на нова таблица
   $f = 1*$_POST['form_id'];
   $p = db_table_field('MAX(`place`)', 'w_tables', '1')+10;
   $q = "INSERT INTO `$tn_prefix"."w_tables` SET `place`=$p, `table`=$t, `old`=$o, `new`='$n', `form_id`=$f;";
-  mysql_query($q,$db_link);
+  mysqli_query($db_link, $q);
   $f = 1*$_POST['table_form_id'];
   $q = "INSERT INTO `$tn_prefix".
        "w_table_props` SET `table`=$t, `form_id`=$f, `file`='".addslashes($_POST['file'])."';";
-  mysql_query($q,$db_link);
+  mysqli_query($db_link, $q);
 //  print_r($_POST); die;
   break;
 case 'similar':
@@ -167,13 +167,13 @@ case 'similar':
     $n = $d['new'];
     $f = $d['form_id'];
     $q = "INSERT INTO `$tn_prefix"."w_tables` SET `place`=$p, `table`=$t, `old`=$o, `new`='$n', `form_id`=$f;";
-    mysql_query($q,$db_link);
+    mysqli_query($db_link,$q);
 //    echo "$q<br>";
   }
   $f = 1*$_POST['table_form_id'];
   $q = "INSERT INTO `$tn_prefix".
        "w_table_props` SET `table`=$t, `form_id`=$f, `file`='".addslashes($_POST['file'])."';";
-    mysql_query($q,$db_link);
+    mysqli_query($db_link,$q);
 //    echo "$q<br>";
 //  die;
   break;
@@ -184,13 +184,13 @@ case 'update': // Променяне на данните за формата на дума
   $f = 1*$_POST['form_id'];
   $p = 1*$_POST['place'];
   $q = "UPDATE `$tn_prefix"."w_tables` SET `place`=$p, `old`=$o, `new`='$n', `form_id`=$f WHERE `ID`=$i;";
-  mysql_query($q,$db_link);
+  mysqli_query($db_link, $q);
 //  print_r($q); die;
   break;
 case 'delete': // Изтриване форма на дума от таблица с форми
   $i = 1*$_POST['table_forms'];
   $q = "DELETE FROM `$tn_prefix"."w_tables` WHERE `ID`=$i;";
-  mysql_query($q,$db_link);
+  mysqli_query($db_link, $q);
 //  print_r($q); die;
   break;
 }
@@ -207,13 +207,13 @@ include_once($idir.'lib/f_db_select_1.php');
 if ($_POST['correct']){ // Ако поредната, предложена дума е грешна и е поправена
   $q = "UPDATE `$tn_prefix"."w_misspelled_bg_words` SET `correct`='".$_POST['correct']."', `status`=0 WHERE `word`='".
        $_POST['new_word']."';";
-  mysql_query($q,$db_link);
+  mysqli_query($db_link, $q);
 }
 $t = 1*$_POST['table'];
 $wa = explode("\n",$_POST['words']);
 if (!$_POST['words']) { // Ако не са предложени думи в полето за нови думи, се добавя поредната дума от предложените
   $q = "UPDATE `$tn_prefix"."w_misspelled_bg_words` SET `status`=3 WHERE `word`='".$_POST['new_word']."';";
-  mysql_query($q,$db_link);
+  mysqli_query($db_link, $q);
   $wa[] = $_POST['new_word'];
 }
 foreach($wa as $w){
@@ -224,7 +224,7 @@ foreach($wa as $w){
     // Ако не е вмъкната се вмъква
     if (!$r){
       $q = "INSERT INTO `$tn_prefix"."w_words` SET `word`='$w0', `table`=$t;";
-      mysql_query($q,$db_link);
+      mysqli_query($db_link, $q);
       $id = mysql_insert_id();
       $w = db_select_1('*', 'w_words', "`ID`=$id");
       insert_forms($w);

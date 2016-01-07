@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Добавяне на думи от файл w_words_local.csv на програмата grammar-bg
 
 $idir = dirname(dirname(dirname(__FILE__))).'/';
+$ddir = $idir;
 
 include($idir.'lib/o_form.php');
 include('f_insert_forms.php');

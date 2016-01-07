@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 $idir = dirname(dirname(dirname(__FILE__))).'/';
+$ddir = $idir;
 
 include($idir."lib/f_db_select_1.php");
 
@@ -39,9 +40,9 @@ if ($_POST['todel'])
 
 //echo $q;
 
-mysql_query($q,$db_link);
+mysqli_query($db_link,$q);
 
-mysql_close($db_link);
+mysqli_close($db_link);
 
 header('Location: '.$_SERVER['HTTP_REFERER']);
 
