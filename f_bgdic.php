@@ -98,7 +98,7 @@ w.focus();
 --></script>';
 
 // Проверка дали броя е променен
-$fc = stored_value('bgdic_last_word_count');
+$fc = stored_value('bgdic_last_word_count'); //die($fc);
 $changed = (($fc!=$wc) || !file_exists($dpth.'dictionary.html'));
 if ($changed){ // Ако броят на думите е променен се генерира нов файл dictionary.html
  
