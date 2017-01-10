@@ -20,6 +20,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 include_once($idir.'lib/f_db_select_m.php');
 
+global $dicurl;
+
+$dicurl = stored_value('bgdic_url', 'http://physics-bg.org/z/');
+
 //--------дефиниции на функции и класове------
 
 // Връща true ако думата $w присъства в базата данни

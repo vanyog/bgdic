@@ -41,13 +41,14 @@ return '<div style="font-family:arial,sans-serif;">'.$rz.'<p>'.translate('bg_spe
 }
 
 function check_1word(){
+global $dicurl;
 $w = isBG($_POST['bg_word']);
 if ($w){
   $rz = '<p>'.translate('bg_spell_word')." \"$w\" ";
 //  $c = db_select_1('*', 'w_word_forms', "`word_form`='".addslashes($w)."'");
   $c = isCorrect($w);
   if ($c) $rz .= translate('bg_spell_ok').
-          ' <a href="http://physics-bg.org/z/?pid=2&wf='.urlencode($w).'" target="_blanc">'.
+          ' <a href="'.$dicurl.'?pid=2&wf='.urlencode($w).'" target="_blanc">'.
           translate('bg_spell_more').'</a></p>';
   else {
     $p = current_pth(__FILE__);

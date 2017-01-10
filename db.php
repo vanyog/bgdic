@@ -62,7 +62,7 @@ echo '</p>
 <input type="submit" value="Следваща дума">
 </form>
 
-<p><a href="http://physics-bg.org/z/index.php?pid=2" target="_blank">Речник</a> || 
+<p><a href="'.$dicurl.'index.php?pid=2" target="_blank">Речник</a> ||
 <a href="http://vanyog.com/_new/index.php?pid=11" target="_blank">Нови думи</a> ||
 <a href="editing.php">Администриране</a></p>
 </center></td></tr></table>';
