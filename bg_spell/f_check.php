@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 include_once($idir.'lib/f_db_select_m.php');
+include_once($idir.'lib/f_stored_value.php');
 
 global $dicurl;
 
@@ -47,6 +48,7 @@ else return false;
 // Връща false ако думата $w съдържа друг символ освен български букви
 // иначе връща самата дума
 function isBG($w){
+$w = trim($w);
 include_once("hlanguage.php");
 $hlang = new HLanguage('bg');
 global $isBG;

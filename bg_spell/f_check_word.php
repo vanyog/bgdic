@@ -43,6 +43,7 @@ return '<div style="font-family:arial,sans-serif;">'.$rz.'<p>'.translate('bg_spe
 function check_1word(){
 global $dicurl;
 $w = isBG($_POST['bg_word']);
+$rz = '';
 if ($w){
   $rz = '<p>'.translate('bg_spell_word')." \"$w\" ";
 //  $c = db_select_1('*', 'w_word_forms', "`word_form`='".addslashes($w)."'");
