@@ -1,4 +1,4 @@
-<script language="php">
+<?php
 /*
 bg-online - open source bulgarian on-line spell checker
 Copyright (C) 2008  Vanyo Georgiev <info@vanyog.com>
@@ -44,4 +44,4 @@ if ($rfr==$rf0){
   header("Location: $rfr?thank");
 }
 
-</script>
+?>

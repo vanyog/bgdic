@@ -1,4 +1,4 @@
-<script language="php">
+<?php
 /*
 BGphpBible - php version of CD Bible project (www.vanyog.com/bible)
 Copyright (C) 2006  Vanyo Georgiev <info@vanyog.com>
@@ -26,7 +26,7 @@ var $uc_l = array();
 var $sro = array();
 var $sro1 = array();
 
-function HLanguage($hl){
+function __construct($hl){
  switch ($hl){
   case 'en0': // английски + числа
    $lc='0123456789abcdefghijklmnopqrstuvwxyz';
@@ -101,4 +101,4 @@ return $r;
 
 } // class HLanguage
 
-</script>
+?>

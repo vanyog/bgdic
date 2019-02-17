@@ -28,6 +28,7 @@ global $page_header, $tn_prefix, $db_link;
 // Форма за задаване текста за проверяване
 $txtf = new HTMLForm('txtch_form');
 $te = new FormTextArea(translate('bgdic_web_text'),'texttch');
+$te->ckbutton = '';
 $txtf->add_input( $te );
 $txtf->add_input( new FormInput('','','submit',translate('bgdic_web_submit')) );
 

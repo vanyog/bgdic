@@ -1,4 +1,4 @@
-<script language="php">
+<?php
 /*
 bg-online - open source bulgarian on-line spell checker
 Copyright (C) 2008  Vanyo Georgiev <info@vanyog.com>
@@ -48,4 +48,4 @@ echo '<p>ћол€, проверете правописа на думата "<strong>'.$w.'</strong>" в друг ре
 <div id="thanks"></div>';
 }
 
-</script>
+?>

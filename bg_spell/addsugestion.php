@@ -38,7 +38,7 @@ if ($c){
 else $q = "INSERT INTO `$tn_prefix"."w_misspelled_bg_words` SET `word`='$w', `date_0`=NOW(), ";
 $q .= "`date_1`=NOW(), `IP`='".$_SERVER['REMOTE_ADDR']."'$q1";
 
-if ($y) mysql_query($q,$db_link);
+if ($y) mysqli_query($db_link,$q);
 
 header("Content-Type: text/html; charset=windows-1251");
 echo "<p>Благодаря! Думата е добавена към новите предложения.</p>";

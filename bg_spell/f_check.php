@@ -72,4 +72,4 @@ for($i=0; $i<strlen($w); $i++){
 return trim($w);
 }
 
-</script>
+?>

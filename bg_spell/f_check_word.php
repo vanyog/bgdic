@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Скрипт Правописен речник
 
 $idir = dirname(dirname(dirname(dirname(__FILE__)))).'/';
+$ddir = $idir;
 
 include_once($idir.'lib/translation.php');
 include_once('f_check.php');
@@ -28,15 +29,22 @@ function check_word(){
 
 $rz = '';
 if (isset($_POST['bg_word'])) $rz = check_1word();
-return '<div style="font-family:arial,sans-serif;">'.$rz.'<p>'.translate('bg_spell_1').'</p>
-<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
+return '<style>
+#word_check { font-family: arial, sans-serif; }
+#word_check form { display:inline-block;  padding:1em; margin-bottom:0; }
+#word_check div.r { display:inline-block; float:right; padding:1em; }
+#word_check div { overflow:auto; }
+#word_check hr { border-top: none; }
+</style>
+<div id="word_check">'.$rz.'<p>'.translate('bg_spell_1').'</p>
 <div>
+<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 <input type="text" name="bg_word">
 <input type="submit" value="'.translate('bg_spell_b').'">
-<div style="float:right">'.translate('bg_spell_dl').'</div>
+</form>
+<div class="r">'.translate('bg_spell_dl').'</div>
 </div>
 '.translate('bg_spell_2').'
-</form>
 </div>';
 }
 
