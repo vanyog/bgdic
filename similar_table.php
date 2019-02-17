@@ -21,8 +21,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 error_reporting(E_ALL); ini_set('display_errors',1);
 
-include('../f_db_table_field.php');
-include('../f_db_select_m.php');
+$idir = dirname(dirname(__DIR__)).'/';
+$ddir = $idir;
+
+include($idir.'lib/f_db_table_field.php');
+include($idir.'lib/f_db_select_m.php');
+include($idir.'lib/f_adm_links.php');
 
 if (!isset($_GET['t'])) die("На този скрипт трябва да се изпрати с ?t= номера на таблицата, която ще се сравни с други таблици"); 
 $t = 1*$_GET['t']; // Номер на таблицата
@@ -32,8 +36,10 @@ $tf = db_table_field('form_id', 'w_table_props', "`table`=$t"); // Номер на груп
 
 $tt = db_select_m('*', 'w_table_props', "`form_id`=$tf");       // Номера на останалите таблици със същите общи свойства на думите
 
-$rz = '';
-$th = '<table border="1"><tr>';
+$rz = '<td>';
+for($i=1; $i<=$fc; $i++) $rz .= "$i<br>";
+$rz .= "</td>";
+$th = '<table border="1"><tr><th>№</th>';
 foreach($tt as $t){
   $fc1 = db_table_field( 'COUNT(*)', 'w_tables', '`table`='.$t['table']); // Брой на формите от поредната таблица
   if ($fc1==$fc){  // Поредната таблица се обработва ако има същия брой форми на думи
@@ -46,6 +52,8 @@ foreach($tt as $t){
 }
 $rz .= '</tr></table>';
 
-echo $th.'</tr><tr>'.$rz;
+header("Content-Type: text/html; charset=windows-1251");
+
+echo adm_links()."$th</tr>\n<tr>$rz";
 
 ?>

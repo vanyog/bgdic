@@ -19,12 +19,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Страница за редактиране на думи
 
+$exe_time = microtime(true);
+
 $idir = dirname(dirname(dirname(__FILE__))).'/';
 $ddir = $idir;
 
-include($idir."conf_paths.php");
-include($mod_apth."user/f_user.php");
-include("f_insert_forms.php");
+include_once($idir."conf_paths.php");
+include_once($mod_apth."user/f_user.php");
+include_once("f_insert_forms.php");
 
 user();
 
@@ -34,13 +36,16 @@ process_data(); // Обработка на изпратените с POST данни
 $nw = db_select_1('*','w_misspelled_bg_words','`status`=1 ORDER BY `date_0` DESC');
 if ($nw) $nw = $nw['word'];
 
+// Брой на оставащите за добавяне думи
+$nc = db_table_field('COUNT(*)', 'w_misspelled_bg_words', '`status`=1');
+
 $rpth = $pth.'mod/bgdic/';
 
 $tb = ''; // Номер на таблица за добавяне на дума
 
 $page_title = 'Редактиране на думи';
 
-$page_header = '<script type="text/javascript"><!--
+$page_header = '<script>
 
 // Саздаване на обект за ajax заявки
 if (window.XMLHttpRequest) ajaxO=new XMLHttpRequest();
@@ -81,6 +86,7 @@ else alert("Не беше изтрита дума, защото\nдумата не съществува\nили трябва да ут
 // Изпълнява се при щракване на бутона "Проба"
 function onWordTest(){
 var f = document.getElementById("new_word");
+if(!f.value) onCopy();
 var w = f.value;
 if (w){
   var s = document.getElementById("table");
@@ -97,9 +103,9 @@ var s = document.getElementById("sugestion");
 n.value = s.value;
 }
 
---></script>';
+</script>';
 
-$page_content = '<p>Съществуваща дума: <input type="text" id="ex_word" onkeypress="enterPressed(event);"> 
+$page_content = '<p>Съществуваща дума: <input type="text" id="ex_word" onkeypress="enterPressed(event);">
 <input type="button" value="Намиране" onclick="fingTable();"> 
 <input type="button" value="Изтриване" onclick="deleteWord();"> 
 <br></p>
@@ -116,14 +122,15 @@ $page_content = '<p>Съществуваща дума: <input type="text" id="ex_word" onkeypres
 </form>
 
 <p>Предложение: <input type="text" id="sugestion" value="'.$nw.'"> 
-<input type="button" value="Копиране" onclick="onCopy();"> 
+<input type="button" value="Копиране" onclick="onCopy();"><br>
+Остават: '.$nc.' <a href="http://google.bg/search?q='.urlencode($nw).'" target="_blank">google</a>
 </p>
 
 <p><a href="editing.php">Администриране</a></p>
 
 <div id="test_result" style="width:600px"></div>
 
-<div style="position:absolute; top:0; left:650px;">
+<div style="position:absolute; top:50px; left:650px;">
 <p><strong>Намиране</strong>. При щракване на този бутон, ако в поле "Съществуваща дума" е написана съществуваща в речника основна форма на дума в поле "Таблица" се показват таблиците на всички омоними на тази дума.</p>
 <p><strong>Изтриване</strong>. При щракване на бутона от речника се изтрива думата, написана в поле "Съществуваща дума" и номера на таблица от поле "Таблица". Ако в "Таблица" има повече номера, не се случва нищо.</p>
 <p><strong>Преместване на дума в нова таблица</strong>. Думата трябва да е написана в поле "Нова дума", таблицата й, която ще се смени, трябва да е написана в поле "Таблица", а новата и таблица в поле "Нова таблица". Щраква се бутона "Добавяне или променяне на таблица".</p>
@@ -133,7 +140,7 @@ $page_content = '<p>Съществуваща дума: <input type="text" id="ex_word" onkeypres
 ';
 
 // Показване на страницата
-include($idir.'lib/build_page.php');
+include(__DIR__.'/build_page.php');
 
 // Обработка на изпратените с POST данни
 function process_data(){

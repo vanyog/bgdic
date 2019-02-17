@@ -62,9 +62,9 @@ echo '</p>
 <input type="submit" value="Следваща дума">
 </form>
 
-<p><a href="'.$dicurl.'index.php?pid=2" target="_blank">Речник</a> ||
-<a href="http://vanyog.com/_new/index.php?pid=11" target="_blank">Нови думи</a> ||
-<a href="editing.php">Администриране</a></p>
+<p><a href="/z/index.php?pid=2" target="_blank">Речник</a> ||
+<a href="last_new_words.php" target="_blank">Нови думи</a> ||
+<a href="editing.php" target="_blank">Администриране</a></p>
 </center></td></tr></table>';
 
 ?>

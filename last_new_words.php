@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-include('f_last_new_words.php');
+include(__DIR__.'/f_last_new_words.php');
 
 header("Content-Type: text/html; charset=windows-1251");
 echo last_new_words();

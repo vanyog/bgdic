@@ -19,11 +19,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Главна страница за администриране, която показва линкове към други страници
 
+$exe_time = microtime(true);
+
 $idir = dirname(dirname(dirname(__FILE__))).'/';
 $ddir = $idir;
 
-include($idir.'conf_paths.php');
-include($mod_apth.'user/f_user.php');
+include_once($idir.'conf_paths.php');
+include_once($mod_apth.'user/f_user.php');
 
 user();
 
@@ -40,8 +42,14 @@ $page_content = '<h1>Администриране на речника</h1>
 <p>
 <a href="edit_words.php">Добавяне, изтриване, променяне на таблиците на думи</a><br>
 </p>
+<p>
+<a href="'.$adm_pth.'edit_file.php?f=mod/bgdic">Файлове</a><br>
+</p>
+<p>
+<a href="edit_properties.php">Свойства и таблици</a><br>
+</p>
 ';
 
-include($idir.'lib/build_page.php');
+include(__DIR__.'/build_page.php');
 
 ?>

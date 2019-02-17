@@ -78,7 +78,7 @@ $ts  = array_values($ts);
 $body_adds = ' onload="doOnLoad();"'; 
 
 // JavaScript код
-$page_header = '<script type="text/javascript"><!--
+$page_header = '<script>
 
 function cookie_by_name(n){ // Стойност на бисквитка с име n
 var l = n.length+1;
@@ -291,7 +291,7 @@ ajaxO.send(null);
 document.getElementById("example_words").innerHTML=ajaxO.responseText;
 }
  
---></script>'; // Край на JavaScript кода
+</script>'; // Край на JavaScript кода
 
 
 $rz .= '

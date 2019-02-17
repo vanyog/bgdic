@@ -56,7 +56,7 @@ $lm = 30;
 $ws = db_select_m('*', 'w_words', "`ID`<=$id ORDER BY `ID` DESC LIMIT 0,$lm");
 
 $ts = array();
-echo '<script type="text/javascript"><!--
+echo '<script>
 
 function goFind(){
 var f = document.forms.word_tables;
@@ -83,7 +83,7 @@ n.value = n.value - '.$lm.';
 f.submit();
 }
 
---></script><form name="word_tables" method="POST">
+</script><form name="word_tables" method="POST">
 <input type="hidden" name="next" value="'.$id.'">
 <input type="hidden" name="fword" value="">
 <table>';

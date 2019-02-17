@@ -1,4 +1,4 @@
-<script language="php">
+<?php
 
 /*
 Free Bulgarian Dictionary Database
@@ -50,6 +50,9 @@ foreach($r0 as $r1){
       $rz .= '</span>';
    }
    else $rz .= $r1['word'];
+   if(in_edit_mode()){
+     $rz .= ' <a href="http://google.bg/search?q='.urlencode($r1['word']).'">g</a>';
+   }
    $rz .= " <br>";
    $c1--;
    if ($c1<=0){  $c1=$c/$cols; $rz .= '</p></td><td><p>'; } 
@@ -62,4 +65,4 @@ $rz .= '<hr>';
 return $rz;
 }
 
-</script>
+?>

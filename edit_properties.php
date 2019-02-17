@@ -17,6 +17,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// Страница за редактиране на възможните ствоства и таблици от свойства на думите
+
+$exe_time = microtime(true);
+
 $idir = dirname(dirname(dirname(__FILE__))).'/';
 $ddir = $idir;
 
@@ -26,8 +30,8 @@ include($mod_apth.'user/f_user.php');
 
 user();
 
-$page_content = '<p><a href="'.dirname(dirname($_SERVER['PHP_SELF'])).'">Home</a></p>
+$page_content = '<p><a href="'.current_pth(__FILE__).'">Home</a></p>
 '.property_editor();
 
-include($idir.'lib/build_page.php');
+include(__DIR__.'/build_page.php');
 ?>

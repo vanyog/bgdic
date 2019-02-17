@@ -24,7 +24,7 @@ function by_grammar(){
 global $page_header, $body_adds;
 
 $bpth = dirname($_SERVER['PHP_SELF']).'/';
-$page_header .= '<script type="text/javascript"><!--
+$page_header .= '<script>
 
 // Обект за ajax заявки
 if (window.XMLHttpRequest) ajaxO=new XMLHttpRequest();
@@ -47,6 +47,7 @@ ajaxO.send(null);
 var t = ajaxO.responseText.split("|");
 eval(t[0]);
 document.getElementById("prop_values").innerHTML=t[1];
+onPropValueChanged();
 }
 
 function onPropValueChanged(){
@@ -56,11 +57,11 @@ ajaxO.open("GET","'.$bpth.'ajax_words_by_props.php?n="+n+"&v="+v+"&z="+Math.rand
 ajaxO.send(null);
 document.getElementById("words").innerHTML=ajaxO.responseText;
 }
---></script>';
+</script>';
 
 $body_adds .= ' onload="onPageLoad();"';
 
-$pa = db_field_values('name', 'w_properties', "1");
+$pa = db_field_values('name', 'w_properties', "1"); //die(print_r($pa,true));
 
 $rz = '<form name="form_1">'.
 combo_box($pa,array('id'=>'prop_name','onchange'=>'onPropNameChanged();')).

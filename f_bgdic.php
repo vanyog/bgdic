@@ -47,7 +47,7 @@ if (isset($_GET['wf'])){
   $sc = "\nfind_button_click();";
 }
 
-$page_header = '<script type="text/javascript"><!--
+$page_header = '<script>
 
 function last100(){
 var ci = document.getElementById("last_count");
@@ -95,7 +95,7 @@ var w = document.getElementById("word_to_show");
 w.focus();
 }
 
---></script>';
+</script>';
 
 // Проверка дали броя е променен
 $fc = stored_value('bgdic_last_word_count'); //die($fc);

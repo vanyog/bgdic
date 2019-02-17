@@ -1,7 +1,7 @@
 <?php
 /*
-Free Bulgarian Dictionary Database
-Copyright (C) 2012  Vanyo Georgiev <info@vanyog.com>
+MyCMS - a simple Content Management System
+Copyright (C) 2019  Vanyo Georgiev <info@vanyog.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,15 +17,15 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$idir = dirname(dirname(dirname(__FILE__))).'/';
-$ddir = $idir;
+// Генериране на страниците за администриране на речника
 
-include('f_bgdic.php');
+include_once($idir."lib/f_adm_links.php");
 
-$page_title = 'Речник на българския език';
+if (!isset($page_header)) $page_header = '';
+$page_header .= "\n".'<link href="'.$adm_pth.'style.css" rel="stylesheet" type="text/css">';
 
-$page_content = bgdic();
+$page_content = adm_links().'
+'.$page_content;
 
-include($idir.'lib/build_page.php');
-
+include($idir."lib/build_page.php");
 ?>
