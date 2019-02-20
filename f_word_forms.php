@@ -21,24 +21,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // която образува формите си по таблица с номер $id
 
 function word_forms($w,$id){
-$c = 6; // Брой на формите в една колона
 global $database, $user, $password, $db_link, $tn_prefix, $idir;
 include_once($idir.'lib/f_db_select_m.php');
 include_once('f_form_string.php');
 $td = db_select_m('*', 'w_tables', "`table`=$id ORDER BY `place`");
-$rz = '<div style="overflow-y: hidden;">
-<div style="float: left; margin:10px;">'."\n";
+$rz = '<div style="column-width: 300px;">'."\n";
 $j = strpos($td[0]['new'],'?'); $a = '';
 if (!($j===false)) $a = $w[strlen($w)-$td[0]['old']+$j];
 $j = 0;
 foreach($td as $t){
-  if ($j && ($j % $c == 0)) $rz .= "\n".'</div><div style="float: left; margin:10px;">'."\n";
+  if ($a) $t['new'] = str_replace('?',$a,$t['new']);
   if ($a) $t['new'] = str_replace('?',$a,$t['new']);
   $rz .= word_form($w,$t['old'],$t['new'])." - ".form_string($t['form_id'])."<br> ";
   $j++;
 }
-return $rz."</div>
-</div>\n";
+return $rz."</div>\n";
 }
 
 function word_form($w,$i,$p){

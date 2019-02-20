@@ -24,9 +24,10 @@ global $dpth;
 $dpth = dirname(__FILE__).'/';
 
 include_once($dpth.'../../conf_paths.php');
-include_once($dpth.'../../lib/f_db_table_field.php');
-include_once($dpth.'../../lib/f_db_select_m.php');
-include_once($dpth.'../../lib/f_stored_value.php');
+include_once($idir.'lib/f_db_table_field.php');
+include_once($idir.'lib/f_db_select_m.php');
+include_once($idir.'lib/f_stored_value.php');
+include_once($idir.'mod/hidebutton/f_hidebutton.php');
 include_once($dpth.'f_to_javascript.php');
 
 function bgdic(){
@@ -47,7 +48,7 @@ if (isset($_GET['wf'])){
   $sc = "\nfind_button_click();";
 }
 
-$page_header = '<script>
+$page_header .= '<script>
 
 function last100(){
 var ci = document.getElementById("last_count");
@@ -55,7 +56,11 @@ var c = ci.value;
 if (c>500) { alert("Не се показват повече от 500 думи."); ci.value=500; c=500; }
 ajaxO.open("GET","'.$rpth.'/ajax_last_words.php?n="+c+"&a="+Math.random(),false);
 ajaxO.send(null);
-document.getElementById("word_links").innerHTML=ajaxO.responseText;
+document.getElementById("word_info").innerHTML="";
+var wl = document.getElementById("word_links");
+wl.innerHTML=ajaxO.responseText;
+addCloseButtonTo(wl);
+document.location = "#word_links";
 }
 
 if (window.XMLHttpRequest) ajaxO=new XMLHttpRequest();
@@ -64,13 +69,18 @@ else ajaxO=new ActiveXObject("Microsoft.XMLHTTP");
 function abrev_click(a){
 ajaxO.open("GET","'.$rpth.'/ajax_word_list.php?i="+a+"&a="+Math.random(),false);
 ajaxO.send(null);
-document.getElementById("word_links").innerHTML=ajaxO.responseText;
+var wl = document.getElementById("word_links");
+wl.innerHTML=ajaxO.responseText;
+addCloseButtonTo(wl);
 }
 
 function word_click(a){
 ajaxO.open("GET","'.$rpth.'/ajax_word_info.php?i="+a+"&a="+Math.random(),false);
 ajaxO.send(null);
-document.getElementById("word_info").innerHTML=ajaxO.responseText;
+var wi = document.getElementById("word_info");
+wi.innerHTML=ajaxO.responseText;
+addCloseButtonTo(wi);
+document.location = "#word_info";
 }
 
 function find_button_click(){
@@ -152,7 +162,7 @@ $rz = '
 
 <p><strong>';
 foreach($wp as $i => $w){
-  $rz .= '<a href="" onclick="abrev_click(\''.$wi[$i].'\');return false;">'.$w."</a> \n";
+  $rz .= '<a href="#word_links" onclick="abrev_click(\''.$wi[$i].'\');">'.$w."</a> \n";
 }
 $rz .= '</strong></p>
 ';
@@ -170,7 +180,7 @@ $body_adds = ' onload="onPageLoad();"';
 return '<div id="find_form">
 <p>Дума: 
 <input type="text" id="word_to_show" onkeypress="enterPressed(event);" value="'.$wf.'"> 
-<input type="checkbox" name="main" id="is_main"> Основна форма 
+<span><input type="checkbox" name="main" id="is_main"> Основна форма</span> 
 <input type="button" value="Показване" onclick="find_button_click();">
 </p>
 </div>

@@ -42,15 +42,13 @@ $cols = 6; $k = 1;
 $a = count($wd)/$cols; 
 $pr = $n-$p; if ($pr<0) $pr=0;
 $nx = $n+$p; if ($nx>$c) $nx=$n;
-echo '<div style="overflow-y: hidden;">
-<p style="margin:10px; padding:0;"><strong>
-<a href="" onclick="abrev_click('.$pr.');return false;"><</a>   
-<a href="" onclick="abrev_click('.$nx.');return false;">></a></strong></p>
-<div style="float: left; margin:10px;">'."\n";
+$bt = '<p style="margin:10px; padding:0;"><strong>
+<a href="" onclick="abrev_click('.$pr.');return false;"><</a> &nbsp;  
+<a href="" onclick="abrev_click('.$nx.');return false;">></a></strong></p>'."\n";;
+echo '<div style="column-width: 150px;">
+'.$bt;
 foreach($wd as $i => $w){
-  echo '<a href="" onclick="word_click('.$w['ID'].');return false;">'.$w['word'].'</a>';
-  if (($i+1)>=round($k*$a)){ $k++; echo '</div><div style="float: left; margin:10px;">'."\n"; }
-  else echo "<br>\n";
+  echo '<a href="#word_info" onclick="word_click('.$w['ID'].');">'.$w['word']."</a><br>\n";
 }
-echo "</div></div>\n"
+echo "$bt</div>\n"
 ?>

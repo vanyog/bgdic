@@ -26,17 +26,19 @@ include_once($idir.'lib/translation.php');
 include_once('f_check.php');
 
 function check_word(){
-
+global $page_header;
 $rz = '';
 if (isset($_POST['bg_word'])) $rz = check_1word();
-return '<style>
+$st = '<style>
 #word_check { font-family: arial, sans-serif; }
 #word_check form { display:inline-block;  padding:1em; margin-bottom:0; }
 #word_check div.r { display:inline-block; float:right; padding:1em; }
 #word_check div { overflow:auto; }
 #word_check hr { border-top: none; }
 </style>
-<div id="word_check">'.$rz.'<p>'.translate('bg_spell_1').'</p>
+';
+if(isset($page_header)) { $page_header .= $st; $st = ''; }
+return $st.'<div id="word_check">'.$rz.'<p>'.translate('bg_spell_1').'</p>
 <div>
 <form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 <input type="text" name="bg_word">

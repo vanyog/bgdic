@@ -33,12 +33,9 @@ header("Content-Type: text/html; charset=windows-1251");
 
 $cols = 5; $k = 1;
 $a = count($wd)/$cols; 
-echo '<div style="overflow-y: hidden;">
-<div style="float: left; margin:10px;">'."\n";
+echo '<div style="column-width:220px;">'."\n";
 foreach($wd as $i => $w){
-  echo '<a href="" onclick="word_click('.$w['ID'].');return false;">'.$w['word'].'</a> '.$w['table'];
-  if (($i+1)>=round($k*$a)){ $k++; echo '</div><div style="float: left; margin:10px;">'."\n"; }
-  else echo "<br>\n";
+  echo '<a href="#word_info" onclick="word_click('.$w['ID'].');">'.$w['word'].'</a> '.$w['table']."<br>\n";
 }
-echo "</div></div>\n"
+echo "</div>\n"
 ?>
