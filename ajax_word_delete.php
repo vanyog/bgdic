@@ -22,8 +22,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Ако в $_GET['t'] има няколко номера, отделени със запетая, не се изтрива дума
 // и се връща празен низ, иначе се връща изтритата дума.
 
+error_reporting(E_ALL); ini_set('display_errors',1);
+
+header("Content-Type: text/html; charset=windows-1251");
 
 $idir = dirname(dirname(dirname(__FILE__))).'/';
+$ddir = $idir;
 
 include($idir."lib/f_db_select_m.php");
 include($idir."lib/f_utf8_to_cp1251.php");
@@ -33,13 +37,11 @@ $t = 1*$_GET['t'];
 
 $da = db_select_m('*','w_words',"`word`='".$w."' AND `table`=$t");
 
-header("Content-Type: text/html; charset=windows-1251");
-
 if (count($da)==1){
   $q = "DELETE FROM `$tn_prefix"."w_words` WHERE `word`='".$w."' AND `table`=$t;";
-  mysql_query($q,$db_link);
+  mysqli_query($db_link,$q);
   $q1 = "DELETE FROM `$tn_prefix"."w_word_forms` WHERE `word_id`=".$da[0]['ID'].";";
-  mysql_query($q1,$db_link);
+  mysqli_query($db_link,$q);
   echo "$w";
 }
 else echo '';

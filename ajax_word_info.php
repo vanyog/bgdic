@@ -33,11 +33,15 @@ $in = db_select_1('*', 'w_dictionary', "`word`='".$w['word']."'");
 header("Content-Type: text/html; charset=windows-1251");
 
 echo '<p><strong>'.$w['word'].'</strong> - '.form_string($ti['form_id']).
-' <em>'.$w['note'].'</em> <a href="http://google.bg/search?q='.urlencode(iconv('cp1251','UTF-8',$w['word'])).'" target="_blank">google</a>';
+' <em>'.$w['note'].'</em>'."\n";
 
-if ($w['interpretation']) echo '<br>'.$w['interpretation']."</p>\n";
+if ($w['interpretation']) echo '<br>'.$w['interpretation'];
 
-echo '<br>Таблица: '.$w['table']."\n";
+echo '<br>Още за тази дума в:
+  <a href="http://google.bg/search?q='.urlencode(iconv('cp1251','UTF-8',$w['word'])).'" target="_blank">google</a> и'."\n".
+' <a href="http://ibl.bas.bg/rbe/lang/bg/'.urlencode(iconv('cp1251','UTF-8',$w['word'])).'" target="_blank">БАН</a>'."\n";
+
+echo "</p>\n".'<br>Таблица: '.$w['table']."\n";
 
 echo word_forms($w['word'],$w['table']);
 

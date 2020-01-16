@@ -28,7 +28,9 @@ include($idir.'lib/f_db_table_field.php');
 include($idir.'lib/f_db_select_m.php');
 include($idir.'lib/f_adm_links.php');
 
-if (!isset($_GET['t'])) die("На този скрипт трябва да се изпрати с ?t= номера на таблицата, която ще се сравни с други таблици"); 
+header("Content-Type: text/html; charset=$site_encoding");
+
+if (!isset($_GET['t'])) die(encode("На този скрипт трябва да се изпрати с ?t= номера на таблицата, която ще се сравни с други таблици"));
 $t = 1*$_GET['t']; // Номер на таблицата
 
 $fc = db_table_field( 'COUNT(*)', 'w_tables', "`table`=$t");    // Брой на формите в таблицата
